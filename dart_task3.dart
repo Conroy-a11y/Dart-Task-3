@@ -44,7 +44,7 @@ class MenuItem {
 //subclass Food
 class Food extends MenuItem {
   String _portionSize;
-  Food(String name, double price, String category, String portionSize)
+  Food(String name, double price,String portionSize)
       : _portionSize = portionSize,
         super(name, price, 'Food');
 }
@@ -56,3 +56,8 @@ void displayItem() {
   print('Category: $category');
   print('Portion Size: $_portionSize');
 }
+ class Drink extends MenuItem {
+  String _size;
+  Drink(String name, double price, String size)
+      : _size = size,
+        super(name, price, 'Drink');  
