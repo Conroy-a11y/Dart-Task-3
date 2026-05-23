@@ -42,7 +42,7 @@ class MenuItem {
 
 class Food extends MenuItem {
   String _portionSize;
-  Food(String name, double price, String category, this._portionSize)
-  _portionSize = portionSize,
-      : super(name, price, 'Food');
+  Food(String name, double price, String category, String portionSize)
+      : _portionSize = portionSize,
+        super(name, price, 'Food');
 }
