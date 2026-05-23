@@ -61,7 +61,12 @@ void displayItem() {
 
 class Drink extends MenuItem {
   String _size;
-  Drink(String name, double price, String size)
-      : _size = size,
+  bool _isCold;
+  Drink(
+    String name,
+    double price,
+    String size,
+  )   : _size = size,
+        _isCold = isCold,
         super(name, price, 'Drink');
 }
