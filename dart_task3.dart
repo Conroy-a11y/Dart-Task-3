@@ -48,3 +48,11 @@ class Food extends MenuItem {
       : _portionSize = portionSize,
         super(name, price, 'Food');
 }
+
+@override
+void displayItem() {
+  print('Name: $name');
+  print('Price: \R$price');
+  print('Category: $category');
+  print('Portion Size: $_portionSize');
+}
