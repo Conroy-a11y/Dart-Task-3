@@ -35,7 +35,14 @@ class MenuItem {
 
   void displayItem() {
     print('Name: $_name');
-    print('Price: \$$_price');
+    print('Price: \R$_price');
     print('Category: $_category');
   }
+}
+
+class Food extends MenuItem {
+  String _portionSize;
+  Food(String name, double price, String category, this._portionSize)
+  _portionSize = portionSize,
+      : super(name, price, 'Food');
 }
