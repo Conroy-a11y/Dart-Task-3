@@ -33,6 +33,7 @@ class MenuItem {
     _category = category;
   }
 
+//method to display item details
   void displayItem() {
     print('Name: $_name');
     print('Price: \R$_price');
@@ -40,6 +41,7 @@ class MenuItem {
   }
 }
 
+//subclass Food
 class Food extends MenuItem {
   String _portionSize;
   Food(String name, double price, String category, String portionSize)
