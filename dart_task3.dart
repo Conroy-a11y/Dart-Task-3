@@ -49,6 +49,7 @@ class Food extends MenuItem {
         super(name, price, 'Food');
 }
 
+//overriding the displayItem method to include portion size
 @override
 void displayItem() {
   print('Name: $name');
@@ -56,6 +57,7 @@ void displayItem() {
   print('Category: $category');
   print('Portion Size: $_portionSize');
 }
+//subclass Drink
 
 class Drink extends MenuItem {
   String _size;
