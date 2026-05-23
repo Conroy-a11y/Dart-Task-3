@@ -33,7 +33,7 @@ class MenuItem {
     _category = category;
   }
 
-  void displayItem() {
+  void display() {
     print('Name: $_name');
     print('Price: \$$_price');
     print('Category: $_category');
