@@ -70,3 +70,19 @@ class Drink extends MenuItem {
         _isCold = isCold,
         super(name, price, 'Drink');
 }
+//overriding the displayItem method to include size and temperature
+@override
+void displayItem{
+
+  String temperature;
+  if(temperature == _isCold){
+    temperature = 'Cold';
+}else{
+  temperature = 'Hot';
+}
+  print('Name: $name');
+  print('Price: \R$price');
+  print('Category: $category');
+  print('Size: $_size');
+  print('Temperature: $temperature');
+}
