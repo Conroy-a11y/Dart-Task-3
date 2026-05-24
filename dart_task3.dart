@@ -1,116 +1,106 @@
+// Restaurant Ordering System in Dart
+// This program simulates a restaurant ordering system
+// demonstrating encapsulation, inheritance, lists, and user input.
+
 import 'dart:io';
 
-void main() {
-  Food pasta = Food('Pasta Alfredo', 1800, 'medium');
-  Food burger = Food('Cheese Burger', 1500, 'large');
-  Food salad = Food('Greek Salad', 1200, 'small');
-  Drink coldSprite = Drink('Sprite', 600, 'small', true);
-  Drink hotCoffee = Drink('Coffee', 800, 'medium', false);
-  Drink coldSmoothie = Drink('Mango Smoothie', 1000, 'large', true);
-  List<MenuItem> menu = [
-    pasta,
-    burger,
-    salad,
-    coldSprite,
-    hotCoffee,
-    coldSmoothie
-  ];
-}
-
-//superclass MenuItem
+// ==========================
+// Super Class: MenuItem
+// ==========================
 class MenuItem {
+  // Private fields
   String _name;
   double _price;
   String _category;
-//constructor
+
+  // Constructor
   MenuItem(this._name, this._price, this._category);
-  //getters functions
-  String get name {
-    return _name;
-  }
 
-  double get price {
-    return _price;
-  }
+  // Getters
+  String get name => _name;
+  double get price => _price;
+  String get category => _category;
 
-  String get category {
-    return _category;
-  }
-
-//setters functions
-  void set name(String name) {
-    _name = name;
-  }
-
-  void set price(double price) {
-    _price = price;
-  }
-
-  void set category(String category) {
-    _category = category;
-  }
-
-//method to display item details
+  // Method to display menu item details
   void displayItem() {
     print('Name: $_name');
-    print('Price: \R$_price');
     print('Category: $_category');
+    print('Price: R$_price');
   }
 }
 
-//subclass Food
+// ==========================
+// Subclass: Food
+// ==========================
 class Food extends MenuItem {
+  // Private field
   String _portionSize;
+
+  // Constructor
   Food(String name, double price, String portionSize)
       : _portionSize = portionSize,
         super(name, price, 'Food');
 
+  // Getter
+  String get portionSize => _portionSize;
+
+  // Override displayItem method
   @override
   void displayItem() {
     print('Name: $name');
-    print('Price: \R$price');
     print('Category: $category');
     print('Portion Size: $_portionSize');
+    print('Price: R$price');
+    print('-------------------------');
   }
 }
 
-//overriding the displayItem method to include portion size
-
-//subclass Drink
-
+// ==========================
+// Subclass: Drink
+// ==========================
 class Drink extends MenuItem {
+  // Private fields
   String _size;
   bool _isCold;
-  Drink(
-    String name,
-    double price,
-    String size,
-  )   : _size = size,
+
+  // Constructor
+  Drink(String name, double price, String size, bool isCold)
+      : _size = size,
         _isCold = isCold,
         super(name, price, 'Drink');
-//overriding the displayItem method to include size and temperature
+
+  // Getters
+  String get size => _size;
+  bool get isCold => _isCold;
+
+  // Override displayItem method
   @override
   void displayItem() {
-    String? temperature;
-    if (temperature == _isCold) {
-      temperature = 'Cold';
-    } else {
-      temperature = 'Hot';
-    }
     print('Name: $name');
-    print('Price: \R$price');
     print('Category: $category');
     print('Size: $_size');
-    print('Temperature: $temperature');
+
+    if (_isCold) {
+      print('Temperature: Cold');
+    } else {
+      print('Temperature: Hot');
+    }
+
+    print('Price: R$price');
+    print('-------------------------');
   }
 }
 
+// ==========================
 // Class: Order
+// ==========================
 class Order {
+  // Private fields
   String _customerName;
   List<MenuItem> _items = [];
   double _total = 0;
 
+  // Constructor
   Order(this._customerName);
 
   // Getters
@@ -118,39 +108,186 @@ class Order {
   List<MenuItem> get items => _items;
   double get total => _total;
 
-  // Add item
+  // Method to add item to order
   void addItem(MenuItem item) {
     _items.add(item);
-    _total = _total + item.price;
-    print('${item.name} added to order.');
+    _total += item.price;
+
+    print('${item.name} added successfully!');
   }
 
-  // Remove Item Method
+  // Method to remove item from order
   void removeItem(String name) {
     bool found = false;
+
     for (int i = 0; i < _items.length; i++) {
       if (_items[i].name.toLowerCase() == name.toLowerCase()) {
         _total -= _items[i].price;
-        print('${_items[i].name} removed from order.');
+
+        print('${_items[i].name} removed successfully!');
+
         _items.removeAt(i);
+
         found = true;
         break;
       }
     }
+
     if (!found) {
-      print('Error: Item "$name" not found in order.');
+      print('Error: Item not found in the order.');
     }
   }
 
-  // Print Bill Method
+  // Method to print final bill
   void printBill() {
-    print('\n--- Bill for $customerName ---');
-    for (var item in _items) {
-      item.displayItem();
+    print('\n========== FINAL BILL ==========');
+    print('Customer Name: $_customerName');
+    print('--------------------------------');
+
+    if (_items.isEmpty) {
+      print('No items in the order.');
+    } else {
+      for (MenuItem item in _items) {
+        item.displayItem();
+      }
+
+      print('TOTAL AMOUNT DUE: R$_total');
     }
-    print('Total: $_total');
-    print('-----------------------------\n');
+
+    print('================================\n');
+
+    // Reset order for next customer
     _items.clear();
     _total = 0;
+
+    print('Order has been reset for the next customer.');
+  }
+}
+
+// ==========================
+// Main Function
+// ==========================
+void main() {
+  // Preset Food Menu
+  Food burger = Food('Beef Burger', 85, 'large');
+  Food pasta = Food('Chicken Pasta', 95, 'medium');
+  Food pizza = Food('Cheese Pizza', 120, 'large');
+
+  // Preset Drink Menu
+  Drink cola = Drink('Cola', 25, 'small', true);
+  Drink coffee = Drink('Coffee', 30, 'medium', false);
+  Drink milkshake = Drink('Vanilla Milkshake', 45, 'large', true);
+
+  // Create one order object
+  Order currentOrder = Order('Customer');
+
+  bool running = true;
+
+  // Main menu loop
+  while (running) {
+    print('\n====== RESTAURANT MENU SYSTEM ======');
+    print('1. View Menu');
+    print('2. Add Item to Order');
+    print('3. Remove Item from Order');
+    print('4. Print Bill');
+    print('5. Exit');
+    print('====================================');
+
+    stdout.write('Enter your choice: ');
+    String? choice = stdin.readLineSync();
+
+    // ==========================
+    // Option 1: View Menu
+    // ==========================
+    if (choice == '1') {
+      print('\n====== AVAILABLE MENU ITEMS ======');
+
+      print('\n1.');
+      burger.displayItem();
+
+      print('2.');
+      pasta.displayItem();
+
+      print('3.');
+      pizza.displayItem();
+
+      print('4.');
+      cola.displayItem();
+
+      print('5.');
+      coffee.displayItem();
+
+      print('6.');
+      milkshake.displayItem();
+    }
+
+    // ==========================
+    // Option 2: Add Item
+    // ==========================
+    else if (choice == '2') {
+      print('\nChoose an item to add:');
+
+      print('1. Beef Burger');
+      print('2. Chicken Pasta');
+      print('3. Cheese Pizza');
+      print('4. Cola');
+      print('5. Coffee');
+      print('6. Vanilla Milkshake');
+
+      stdout.write('Enter item number: ');
+      String? itemChoice = stdin.readLineSync();
+
+      if (itemChoice == '1') {
+        currentOrder.addItem(burger);
+      } else if (itemChoice == '2') {
+        currentOrder.addItem(pasta);
+      } else if (itemChoice == '3') {
+        currentOrder.addItem(pizza);
+      } else if (itemChoice == '4') {
+        currentOrder.addItem(cola);
+      } else if (itemChoice == '5') {
+        currentOrder.addItem(coffee);
+      } else if (itemChoice == '6') {
+        currentOrder.addItem(milkshake);
+      } else {
+        print('Invalid menu choice.');
+      }
+    }
+
+    // ==========================
+    // Option 3: Remove Item
+    // ==========================
+    else if (choice == '3') {
+      stdout.write('Enter the item name to remove: ');
+      String? itemName = stdin.readLineSync();
+
+      if (itemName != null && itemName.isNotEmpty) {
+        currentOrder.removeItem(itemName);
+      } else {
+        print('Invalid item name.');
+      }
+    }
+
+    // ==========================
+    // Option 4: Print Bill
+    // ==========================
+    else if (choice == '4') {
+      currentOrder.printBill();
+    }
+
+    // ==========================
+    // Option 5: Exit
+    // ==========================
+    else if (choice == '5') {
+      running = false;
+      print('Thank you for using the Restaurant Ordering System!');
+    }
+
+    // ==========================
+    // Invalid Input
+    // ==========================
+    else {
+      print('Invalid choice. Please try again.');
+    }
   }
 }
