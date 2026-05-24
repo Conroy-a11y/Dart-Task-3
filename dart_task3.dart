@@ -47,16 +47,18 @@ class Food extends MenuItem {
   Food(String name, double price, String portionSize)
       : _portionSize = portionSize,
         super(name, price, 'Food');
+
+  @override
+  void displayItem() {
+    print('Name: $name');
+    print('Price: \R$price');
+    print('Category: $category');
+    print('Portion Size: $_portionSize');
+  }
 }
 
 //overriding the displayItem method to include portion size
-@override
-void displayItem() {
-  print('Name: $name');
-  print('Price: \R$price');
-  print('Category: $category');
-  print('Portion Size: $_portionSize');
-}
+
 //subclass Drink
 
 class Drink extends MenuItem {
@@ -69,23 +71,23 @@ class Drink extends MenuItem {
   )   : _size = size,
         _isCold = isCold,
         super(name, price, 'Drink');
+
+  @override
+  void displayItem() {
+    String? temperature;
+    if (temperature == _isCold) {
+      temperature = 'Cold';
+    } else {
+      temperature = 'Hot';
+    }
+    print('Name: $name');
+    print('Price: \R$price');
+    print('Category: $category');
+    print('Size: $_size');
+    print('Temperature: $temperature');
+  }
 }
 //overriding the displayItem method to include size and temperature
-@override
-void displayItem(){
-
-  String? temperature;
-  if(temperature == _isCold){
-    temperature = 'Cold';
-}else{
-  temperature = 'Hot';
-}
-  print('Name: $name');
-  print('Price: \R$price');
-  print('Category: $category');
-  print('Size: $_size');
-  print('Temperature: $temperature');
-}
 
 // Class: Order
 class Order {
@@ -99,3 +101,4 @@ class Order {
   String get customerName => _customerName;
   List<MenuItem> get items => _items;
   double get total => _total;
+}
