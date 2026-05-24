@@ -71,7 +71,7 @@ class Drink extends MenuItem {
   )   : _size = size,
         _isCold = isCold,
         super(name, price, 'Drink');
-
+//overriding the displayItem method to include size and temperature
   @override
   void displayItem() {
     String? temperature;
@@ -87,7 +87,6 @@ class Drink extends MenuItem {
     print('Temperature: $temperature');
   }
 }
-//overriding the displayItem method to include size and temperature
 
 // Class: Order
 class Order {
