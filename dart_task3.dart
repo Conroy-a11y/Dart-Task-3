@@ -100,4 +100,11 @@ class Order {
   String get customerName => _customerName;
   List<MenuItem> get items => _items;
   double get total => _total;
+
+  // Add item
+  void addItem(MenuItem item) {
+    _items.add(item);
+    _total += item.price;
+    print('${item.name} added to order.');
+  }
 }
