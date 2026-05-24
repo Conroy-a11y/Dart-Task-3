@@ -13,7 +13,7 @@ void main() {
   Drink milkshake = Drink('Vanilla Milkshake', 45, 'large', true);
 
   // Create one order object
-  Order currentOrder = Order('Customer');
+  Order currentOrder = Order('Conroy');
 
   bool running = true;
 
@@ -146,7 +146,7 @@ class MenuItem {
   void displayItem() {
     print('Name: $_name');
     print('Category: $_category');
-    print('Price: R$_price');
+    print('Price: \R$_price');
   }
 }
 
@@ -170,7 +170,7 @@ class Food extends MenuItem {
     print('Name: $name');
     print('Category: $category');
     print('Portion Size: $_portionSize');
-    print('Price: R$price');
+    print('Price: \R$price');
     print('-------------------------');
   }
 }
