@@ -4,169 +4,6 @@
 
 import 'dart:io';
 
-// ==========================
-// Super Class: MenuItem
-// ==========================
-class MenuItem {
-  // Private fields
-  String _name;
-  double _price;
-  String _category;
-
-  // Constructor
-  MenuItem(this._name, this._price, this._category);
-
-  // Getters
-  String get name => _name;
-  double get price => _price;
-  String get category => _category;
-
-  // Method to display menu item details
-  void displayItem() {
-    print('Name: $_name');
-    print('Category: $_category');
-    print('Price: R$_price');
-  }
-}
-
-// ==========================
-// Subclass: Food
-// ==========================
-class Food extends MenuItem {
-  // Private field
-  String _portionSize;
-
-  // Constructor
-  Food(String name, double price, String portionSize)
-      : _portionSize = portionSize,
-        super(name, price, 'Food');
-
-  // Getter
-  String get portionSize => _portionSize;
-
-  // Override displayItem method
-  @override
-  void displayItem() {
-    print('Name: $name');
-    print('Category: $category');
-    print('Portion Size: $_portionSize');
-    print('Price: R$price');
-    print('-------------------------');
-  }
-}
-
-// ==========================
-// Subclass: Drink
-// ==========================
-class Drink extends MenuItem {
-  // Private fields
-  String _size;
-  bool _isCold;
-
-  // Constructor
-  Drink(String name, double price, String size, bool isCold)
-      : _size = size,
-        _isCold = isCold,
-        super(name, price, 'Drink');
-
-  // Getters
-  String get size => _size;
-  bool get isCold => _isCold;
-
-  // Override displayItem method
-  @override
-  void displayItem() {
-    print('Name: $name');
-    print('Category: $category');
-    print('Size: $_size');
-
-    if (_isCold) {
-      print('Temperature: Cold');
-    } else {
-      print('Temperature: Hot');
-    }
-
-    print('Price: R$price');
-    print('-------------------------');
-  }
-}
-
-// ==========================
-// Class: Order
-// ==========================
-class Order {
-  // Private fields
-  String _customerName;
-  List<MenuItem> _items = [];
-  double _total = 0;
-
-  // Constructor
-  Order(this._customerName);
-
-  // Getters
-  String get customerName => _customerName;
-  List<MenuItem> get items => _items;
-  double get total => _total;
-
-  // Method to add item to order
-  void addItem(MenuItem item) {
-    _items.add(item);
-    _total += item.price;
-
-    print('${item.name} added successfully!');
-  }
-
-  // Method to remove item from order
-  void removeItem(String name) {
-    bool found = false;
-
-    for (int i = 0; i < _items.length; i++) {
-      if (_items[i].name.toLowerCase() == name.toLowerCase()) {
-        _total -= _items[i].price;
-
-        print('${_items[i].name} removed successfully!');
-
-        _items.removeAt(i);
-
-        found = true;
-        break;
-      }
-    }
-
-    if (!found) {
-      print('Error: Item not found in the order.');
-    }
-  }
-
-  // Method to print final bill
-  void printBill() {
-    print('\n========== FINAL BILL ==========');
-    print('Customer Name: $_customerName');
-    print('--------------------------------');
-
-    if (_items.isEmpty) {
-      print('No items in the order.');
-    } else {
-      for (MenuItem item in _items) {
-        item.displayItem();
-      }
-
-      print('TOTAL AMOUNT DUE: R$_total');
-    }
-
-    print('================================\n');
-
-    // Reset order for next customer
-    _items.clear();
-    _total = 0;
-
-    print('Order has been reset for the next customer.');
-  }
-}
-
-// ==========================
-// Main Function
-// ==========================
 void main() {
   // Preset Food Menu
   Food burger = Food('Beef Burger', 85, 'large');
@@ -291,3 +128,167 @@ void main() {
     }
   }
 }
+
+// ==========================
+// Super Class: MenuItem
+// ==========================
+class MenuItem {
+  // Private fields
+  String _name;
+  double _price;
+  String _category;
+
+  // Constructor
+  MenuItem(this._name, this._price, this._category);
+
+  // Getters
+  String get name => _name;
+  double get price => _price;
+  String get category => _category;
+
+  // Method to display menu item details
+  void displayItem() {
+    print('Name: $_name');
+    print('Category: $_category');
+    print('Price: R$_price');
+  }
+}
+
+// ==========================
+// Subclass: Food
+// ==========================
+class Food extends MenuItem {
+  // Private field
+  String _portionSize;
+
+  // Constructor
+  Food(String name, double price, String portionSize)
+      : _portionSize = portionSize,
+        super(name, price, 'Food');
+
+  // Getter
+  String get portionSize => _portionSize;
+
+  // Override displayItem method
+  @override
+  void displayItem() {
+    print('Name: $name');
+    print('Category: $category');
+    print('Portion Size: $_portionSize');
+    print('Price: R$price');
+    print('-------------------------');
+  }
+}
+
+// ==========================
+// Subclass: Drink
+// ==========================
+class Drink extends MenuItem {
+  // Private fields
+  String _size;
+  bool _isCold;
+
+  // Constructor
+  Drink(String name, double price, String size, bool isCold)
+      : _size = size,
+        _isCold = isCold,
+        super(name, price, 'Drink');
+
+  // Getters
+  String get size => _size;
+  bool get isCold => _isCold;
+
+  // Override displayItem method
+  @override
+  void displayItem() {
+    print('Name: $name');
+    print('Category: $category');
+    print('Size: $_size');
+
+    if (_isCold) {
+      print('Temperature: Cold');
+    } else {
+      print('Temperature: Hot');
+    }
+
+    print('Price: \R$price');
+    print('-------------------------');
+  }
+}
+
+// ==========================
+// Class: Order
+// ==========================
+class Order {
+  // Private fields
+  String _customerName;
+  List<MenuItem> _items = [];
+  double _total = 0;
+
+  // Constructor
+  Order(this._customerName);
+
+  // Getters
+  String get customerName => _customerName;
+  List<MenuItem> get items => _items;
+  double get total => _total;
+
+  // Method to add item to order
+  void addItem(MenuItem item) {
+    _items.add(item);
+    _total += item.price;
+
+    print('${item.name} added successfully!');
+  }
+
+  // Method to remove item from order
+  void removeItem(String name) {
+    bool found = false;
+
+    for (int i = 0; i < _items.length; i++) {
+      if (_items[i].name.toLowerCase() == name.toLowerCase()) {
+        _total -= _items[i].price;
+
+        print('${_items[i].name} removed successfully!');
+
+        _items.removeAt(i);
+
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      print('Error: Item not found in the order.');
+    }
+  }
+
+  // Method to print final bill
+  void printBill() {
+    print('\n========== FINAL BILL ==========');
+    print('Customer Name: $_customerName');
+    print('--------------------------------');
+
+    if (_items.isEmpty) {
+      print('No items in the order.');
+    } else {
+      for (MenuItem item in _items) {
+        item.displayItem();
+      }
+
+      print('TOTAL AMOUNT DUE: R$_total');
+    }
+
+    print('================================\n');
+
+    // Reset order for next customer
+    _items.clear();
+    _total = 0;
+
+    print('Order has been reset for the next customer.');
+  }
+}
+
+// ==========================
+// Main Function
+// ==========================
