@@ -1,9 +1,6 @@
-// Restaurant Ordering System in Dart
-// This program simulates a restaurant ordering system
-// demonstrating encapsulation, inheritance, lists, and user input.
-
 import 'dart:io';
 
+// Main Function
 void main() {
   // Preset Food Menu
   Food burger = Food('Beef Burger', 85, 'large');
@@ -30,7 +27,7 @@ void main() {
     print('5. Exit');
     print('====================================');
 
-    stdout.write('Enter your choice: ');
+    print('Enter your choice: ');
     String? choice = stdin.readLineSync();
 
     // ==========================
@@ -71,7 +68,7 @@ void main() {
       print('5. Coffee');
       print('6. Vanilla Milkshake');
 
-      stdout.write('Enter item number: ');
+      print('Enter item number: ');
       String? itemChoice = stdin.readLineSync();
 
       if (itemChoice == '1') {
@@ -95,7 +92,7 @@ void main() {
     // Option 3: Remove Item
     // ==========================
     else if (choice == '3') {
-      stdout.write('Enter the item name to remove: ');
+      print('Enter the item name to remove: ');
       String? itemName = stdin.readLineSync();
 
       if (itemName != null && itemName.isNotEmpty) {
@@ -129,9 +126,8 @@ void main() {
   }
 }
 
-// ==========================
 // Super Class: MenuItem
-// ==========================
+
 class MenuItem {
   // Private fields
   String _name;
@@ -154,9 +150,8 @@ class MenuItem {
   }
 }
 
-// ==========================
 // Subclass: Food
-// ==========================
+
 class Food extends MenuItem {
   // Private field
   String _portionSize;
@@ -180,9 +175,8 @@ class Food extends MenuItem {
   }
 }
 
-// ==========================
 // Subclass: Drink
-// ==========================
+
 class Drink extends MenuItem {
   // Private fields
   String _size;
@@ -216,9 +210,7 @@ class Drink extends MenuItem {
   }
 }
 
-// ==========================
 // Class: Order
-// ==========================
 class Order {
   // Private fields
   String _customerName;
@@ -276,7 +268,7 @@ class Order {
         item.displayItem();
       }
 
-      print('TOTAL AMOUNT DUE: R$_total');
+      print('TOTAL AMOUNT DUE: \R$_total');
     }
 
     print('================================\n');
@@ -288,7 +280,3 @@ class Order {
     print('Order has been reset for the next customer.');
   }
 }
-
-// ==========================
-// Main Function
-// ==========================
