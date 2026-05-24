@@ -1,5 +1,4 @@
 //superclass MenuItem
-import 'dart:html_common';
 
 class MenuItem {
   String _name;
@@ -104,7 +103,36 @@ class Order {
   // Add item
   void addItem(MenuItem item) {
     _items.add(item);
-    _total += item.price;
+    _total = _total + item.price;
     print('${item.name} added to order.');
+  }
+
+  // Remove Item Method
+  void removeItem(String name) {
+    bool found = false;
+    for (int i = 0; i < _items.length; i++) {
+      if (_items[i].name.toLowerCase() == name.toLowerCase()) {
+        _total -= _items[i].price;
+        print('${_items[i].name} removed from order.');
+        _items.removeAt(i);
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      print('Error: Item "$name" not found in order.');
+    }
+  }
+
+  // Print Bill Method
+  void printBill() {
+    print('\n--- Bill for $customerName ---');
+    for (var item in _items) {
+      item.displayItem();
+    }
+    print('Total: $_total');
+    print('-----------------------------\n');
+    _items.clear();
+    _total = 0;
   }
 }
