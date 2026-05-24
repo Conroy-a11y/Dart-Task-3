@@ -1,3 +1,5 @@
+import 'dart:io';
+
 void main() {
   Food pasta = Food('Pasta Alfredo', 1800, 'medium');
   Food burger = Food('Cheese Burger', 1500, 'large');
@@ -5,6 +7,14 @@ void main() {
   Drink coldSprite = Drink('Sprite', 600, 'small', true);
   Drink hotCoffee = Drink('Coffee', 800, 'medium', false);
   Drink coldSmoothie = Drink('Mango Smoothie', 1000, 'large', true);
+  List<MenuItem> menu = [
+    pasta,
+    burger,
+    salad,
+    coldSprite,
+    hotCoffee,
+    coldSmoothie
+  ];
 }
 
 //superclass MenuItem
