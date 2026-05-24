@@ -1,5 +1,13 @@
-//superclass MenuItem
+void main() {
+  Food pasta = Food('Pasta Alfredo', 1800, 'medium');
+  Food burger = Food('Cheese Burger', 1500, 'large');
+  Food salad = Food('Greek Salad', 1200, 'small');
+  Drink coldSprite = Drink('Sprite', 600, 'small', true);
+  Drink hotCoffee = Drink('Coffee', 800, 'medium', false);
+  Drink coldSmoothie = Drink('Mango Smoothie', 1000, 'large', true);
+}
 
+//superclass MenuItem
 class MenuItem {
   String _name;
   double _price;
